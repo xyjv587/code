@@ -19,6 +19,7 @@ public class CmfzApplicationTests {
     public void contextLoads() {
         Integer count = userMapper.getCount(1);
         System.out.println(count);
+        System.out.println("hello");
     }
 
 }
