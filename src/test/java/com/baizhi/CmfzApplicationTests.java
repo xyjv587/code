@@ -18,6 +18,7 @@ public class CmfzApplicationTests {
         System.out.println(count);
         System.out.println("hello");
         System.out.println("aa");
+        System.out.println("bb");
     }
 
 }
