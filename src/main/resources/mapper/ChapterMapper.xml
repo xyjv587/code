@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.mapper.ChapterMapper">
+    <select id="queryPage" resultType="Chapter">
+      select * from
+      (select * from chapter where album_id=#{album_id}) as b
+      LIMIT #{start},#{rows}
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        select count(id) from chapter where album_id=#{album_id}
+    </select>
+
+    <insert id="save" parameterType="Chapter">
+        INSERT INTO chapter VALUES(#{id},#{title},#{size},#{time},#{upload_date},#{video},#{album_id})
+    </insert>
+
+    <delete id="delete">
+        delete from chapter where id in
+        <foreach collection="array" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateUrl" parameterType="Chapter">
+        update chapter set video = #{video},`size`=#{size},`time`=#{time},album_id=#{album_id} where id=#{id}
+    </update>
+</mapper>
